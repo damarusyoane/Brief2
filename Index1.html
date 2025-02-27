@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Instantané</title>
+    <!-- <link href="./css/tailwind.min.css" rel="stylesheet"> Local Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- CDN Tailwind CSS -->
+
+
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Formulaire de création de CV -->
+    <div class="flex flex-col md:flex-row gap-6 w-full">
+        <!-- Section de création de CV -->
+        <div class="w-full md:w-1/2 bg-white p-6 rounded shadow-md">
+
+            <!-- Titre de la section -->
+            <h1 class="text-2xl font-bold mb-4">Générateur de CV</h1>
+            <h2 class="text-xl font-bold mb-4 text-blue-600">Formulaire</h2>
+            <form id="cvForm" class="space-y-4">
+
+                <!-- Champ de téléchargement de la photo de profil -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Photo de profil</label>
+                    <div class="my-2">
+                        <!-- Aperçu de la photo de profil -->
+                        <img alt="profil" src="https://via-placeholder.com/150" class="w-32 h-32 rounded-full object-cover border border-gray-300">
+                        <label><input type="file" id="image"   accept="image/*" ></label>
+                    </div>
+    
+                </div><br>
+
+                <!-- Informations personnelles -->
+                <div class="mb-4">
+                    <!-- Bouton pour afficher/masquer les informations personnelles -->
+                    <button type="button" id="togglePersonalInfo" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Informations personnelles
+                        <!-- Flèche de bas -->
+                        <span id="arrowPersonal">▼</span>
+                    </button>
+                    <!-- Section des informations personnelles -->
+                    <div id="personalInfo" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label>Nom et Prénom</label>
+                        <input type="text" id="nom" name="fullName" class="p-2 w-full border rounded-md" ><br>
+                        <label>Titre</label>
+                        <input type="text" id="titre"  name="birthday" class="p-2 w-full border rounded-md" ><br>
+                        <label>Age</label>
+                        <input type="number" id="age" name="age" class="p-2 w-full border rounded-md" ><br>
+                        <label>Email</label>
+                        <input type="email" id="email" name="email" class="p-2 w-full border rounded-md" ><br>
+                        <label>Téléphone</label>
+                        <input type="tel" id="tel" name="phone" class="p-2 w-full border rounded-md" ><br>
+                        <label>Adresse</label>
+                        <input type="text" id="adresse" name="address" class="p-2 w-full border rounded-md" ><br> 
+                        <label>Sexe</label>
+                        <input type="text" id="sexe" name="address" class="p-2 w-full border rounded-md" ><br> 
+                        <label>Ville</label>
+                        <input type="text" id="ville" name="address" class="p-2 w-full border rounded-md" ><br>     
+                        <br><label>Situation Actuelle</label>
+                        <div class="flex">
+                            <select  id="situation" name="situation" onchange="updateCVPreview()" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
+                                <option value="Etudiant">Etudiant</option>
+                                <option value="En recherche d'emploi">En recherche d'emploi</option>
+                                <option value="Salarié">Salarié</option>
+                                <option value="Entrepreneur">Entrepreneur</option>
+                            </select>
+                        </div><br>
+                        <label>Description</label><br>
+                        <textarea name="" id="a-propos" class="w-full border p-2 rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- Expériences professionnelles -->
+                 <!-- Bouton pour afficher/masquer -->
+                <div class="mb-4">
+                    <button type="button" id="toggleExperience" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Expériences professionnelles
+                        <span id="arrowExperience">▼</span>
+                    </button>
+                    <div id="experience-form" class="experience-entry hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label>Nom de l’entreprise</label>
+                        <input type="text" type="entreprise" class="entreprise w-full border p-2 rounded-md " >
+                        <label>Poste occupé</label>
+                        <input type="text"   class=" poste w-full border p-2 rounded-md" >
+                        <label>Date debut</label>
+                        <input type="date"  class=" date-debut w-full border p-2 rounded-md " >
+                        <label>Date fin</label>
+                        <input type="date"  class="date-fin w-full border p-2 rounded-md " >
+                        <label>Ville</label>
+                        <input type="text"  class="ville w-full border p-2 rounded-md " >
+                        <label>Description des missions</label>
+                        <textarea  class="description w-full border p-2 rounded-md " ></textarea>
+                        <button type="button" class="bg-blue-500 text-white px-4 py-1 rounded add-experience-button">✔ Terminé</button> 
+                        <button type="button" id="add-experience" class="bg-green-500 text-white px-4 py-1 rounded justify-end">Ajouter une expérience</button>
+                    </div>
+                </div>
+
+                <!-- Formation -->
+                <div class="mb-4">
+                    <button type="button" id="toggleEducation" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Formation
+                        <span id="arrowEducation">▼</span>
+                    </button>
+                    <div id="formation-form" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label>Diplôme obtenu</label>
+                        <input type="text" id="diplome" class="w-full border p-2 rounded-md" >
+                        <label>Établissement</label>
+                        <input type="text" id="etablissement" class="w-full border p-2 rounded-md" >
+                        <label>Année d'obtention</label>
+                        <input type="number" id="annee-obtention" class="w-full border p-2 rounded-md" >
+                        <button type="button" id="add-formation-button" class="bg-blue-500 text-white px-4 py-1 rounded">✔ Terminé</button> 
+                    </div>
+                </div>
+
+                <!-- Compétences -->
+                <div class="mb-4">
+                    <button type="button" id="toggleSkills" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Compétences
+                        <span id="arrowSkills">▼</span>
+                    </button>
+                    <div id="competence-form" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label>Liste des compétences</label>
+                        <textarea id="competence" class="w-full border p-2 rounded-md" ></textarea>
+                        <button type="button" id="add-competence-button" class="bg-blue-500 text-white px-4 py-1 rounded">✔ Terminé</button> 
+                    </div>
+                </div>
+
+                <!-- Langues -->
+                <div class="mb-4">
+                    <button type="button" id="toggleLanguages" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Langues
+                        <span id="arrowLanguages">▼</span>
+                    </button><br>
+                    <div id="langue-form" class="hidden flex items-center gap-3 mb-4">
+                        <label for="langues" class="block text-lg font-medium text-dark-700">Langues maîtrisées</label>
+                        <input type="text" id="langues" placeholder="Langue" class="p-2 border rounded-md w-1/3" >
+
+                        <label for="niveau" class="block text-lg font-medium text-dark-700">Niveau</label>
+                        <select id="niveau" class="p-2 border rounded-md w-1/3">
+                          <option value="">choisissez</option>
+                          <option value="Débutant">Débutant</option>
+                          <option value="Intermédiaire">Intermédiaire</option>
+                          <option value="Avancé">Avancé</option>
+                          <option value="Bilingue">Bilingue</option>
+                        </select><br>
+                        <button type="button" id="add-langue-button" class="bg-blue-500 text-white px-4 py-1 rounded">✔ Terminé</button>                  
+                    </div>
+                </div>
+
+                <!-- Centres d'intérêts -->
+                <div class="mb-4">
+                    <button type="button" id="toggleHobbies" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Centres d'intérêts
+                        <span id="arrowHobbies">▼</span>
+                    </button>
+                    <div id="loisir-form" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label for="Hobbies" class="block text-lg font-medium text-dark-700">Centres d'intérêts</label>
+                        <input type="text" id="loisir" name="hobbies" class="w-full border border-gray-300 rounded p-2">
+                        <!-- Tags d'intérêts -->
+                        <!-- bouton d'ajout d'activités et icone de supression des hobbies choisis -->
+                        <!-- Bouton d'ajout d'activités -->
+                        <div id="hobbiesTags" class="flex flex-wrap gap-2 mt-2"></div>
+                        <button type="button" id="add-loisir-button" class="bg-white-500 text-dark px-2 py-1 border border-gray-300 rounded">+ Ajouter Une activité</button>                        
+                    </div>   
+                </div><br>
+                <!--Reference-->
+                <div class="mb-4">
+                    <button type="button" id="toggleReference" class="w-full flex justify-between items-center bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-lg">
+                        Reference
+                        <span id="arrowReference">▼</span>
+                    </button>
+                    <div id="reference-form" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <label>Nom Referencier</label>
+                        <input type="text" id="nom-reference" class="w-full border p-2 rounded-md" >
+                        <label>Contact Referencier</label>
+                        <input type="text" id="contact-reference" class="w-full border p-2 rounded-md" >
+                        <label>Poste Reference</label>
+                        <input type="" id="poste-reference" class="w-full border p-2 rounded-md" >
+                        <button type="button" id="add-reference-button" class="bg-blue-500 text-white px-4 py-1 rounded">✔ Terminé</button> 
+                    </div>
+                </div>
+                    
+                <!-- Bouton d'ajout d'expérience -->
+                
+                
+                <!-- Bouton de soumission et de suppression -->
+
+                <!-- Bouton de suppression -->
+                <button type="reset" class="bg-orange-500 text-white px-4 py-1 rounded">Supprimer</button>
+                <!-- Bouton de soumission -->
+                <button type="submit" id="generate-pdf" onclick="previewPDF()" class="bg-blue-500 text-white px-4 py-1 rounded">Générer le CV</button>
+            </form>
+        </div>
+        <!-- Aperçu du CV -->
+        <div id="preview" class="w-full md:w-1/2 bg-white p-6 rounded shadow-md ">
+            <h2 class="text-2xl font-bold text-gray-800">Aperçu du CV</h2>
+            <div id="cv-content" class="mt-4">  
+                <div class="container mx-auto p-8 bg-white shadow-lg">
+                    <div class="flex flex-wrap">
+                        <div class="w-full md:w-1/3 p-4 break-words">
+                            <div class="flex items-center mt-2">
+                                <img src="" alt="photo profil" id="cv-image" class="w-52 h-52 rounded-full object-cover">
+                            </div>
+                            <div>
+                                <h1 class="text-xl font-bold mb-2" id="cv-nom"></h1>
+                                <p class="text-gray-700 italic mb-4" id="cv-titre"></p>
+                            </div>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">A-PROPOS</h2>
+                            <p class="text-gray-600" id="cv-a-propos"></p>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">Loisirs</h2>
+                            <div id="loisir-container"></div>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">Langues</h2>
+                            <div id="langues-container"></div>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">Compétences</h2>
+                            <div id="competences-container"></div>
+                        </div>
+                
+                        <div class="w-full md:w-2/3 p-4">
+                            <div class="bg-blue-500 p-4 rounded">
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-home-50.png" alt="ville" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-ville"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-mail-50.png" alt="email" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-email"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-call-64.png" alt="tel" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-tel"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-age-50.png" alt="age" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-age"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                     <img src="./assets/icons8-head-in-sand-50.png" alt="situation" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-situation"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-gender-64.png" alt="sexe" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-sexe"></p>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <img src="./assets/icons8-adress-64.png" alt="adresse" class="w-6 h-6 mr-2">
+                                    <p class="text-gray-700 text-center w-full" id="cv-adresse"></p>
+                                </div>
+                            </div>
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">FORMATIONS</h2>
+                            <div id="formations-container"></div>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">EXPERIENCES</h2>
+                            <div id="experiences-container"></div>
+                
+                            <h2 class="text-lg font-semibold mt-4 mb-2 border-b border-blue-500">REFERENCES</h2>
+                            <div id="reference-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+<!-- jsPDF -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+ <!-- jsPDF -->
+    <script>
+      window.jsPDF = window.jspdf.jsPDF;
+    </script>
+    <script src="./js/generate.js"></script>
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+
+    <script src="./js/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+                    
+
+
+</body>
+</html>
