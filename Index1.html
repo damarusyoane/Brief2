@@ -6,6 +6,7 @@
     <title>CV Instantané</title>
     <!-- <link href="./css/tailwind.min.css" rel="stylesheet"> Local Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- CDN Tailwind CSS -->
+    
 
 
     <!-- <link rel="stylesheet" href="styles.css"> -->
@@ -47,21 +48,21 @@
                     <!-- Section des informations personnelles -->
                     <div id="personalInfo" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
                         <label>Nom et Prénom</label>
-                        <input type="text" id="nom" name="fullName" class="p-2 w-full border rounded-md" ><br>
+                        <input type="text" id="nom" name="fullName" class="p-2 w-full border rounded-md" required><br>
                         <label>Titre</label>
                         <input type="text" id="titre"  name="birthday" class="p-2 w-full border rounded-md" ><br>
                         <label>Age</label>
-                        <input type="number" id="age" name="age" class="p-2 w-full border rounded-md" ><br>
+                        <input type="number" id="age" name="age" class="p-2 w-full border rounded-md" required ><br>
                         <label>Email</label>
-                        <input type="email" id="email" name="email" class="p-2 w-full border rounded-md" ><br>
+                        <input type="email" id="email" name="email" class="p-2 w-full border rounded-md"required ><br>
                         <label>Téléphone</label>
-                        <input type="tel" id="tel" name="phone" class="p-2 w-full border rounded-md" ><br>
+                        <input type="tel" id="tel" name="phoneNumber" class="p-2 w-full border rounded-md" required><br>
                         <label>Adresse</label>
                         <input type="text" id="adresse" name="address" class="p-2 w-full border rounded-md" ><br> 
                         <label>Sexe</label>
-                        <input type="text" id="sexe" name="address" class="p-2 w-full border rounded-md" ><br> 
+                        <input type="text" id="sexe" name="gender" class="p-2 w-full border rounded-md" required ><br> 
                         <label>Ville</label>
-                        <input type="text" id="ville" name="address" class="p-2 w-full border rounded-md" ><br>     
+                        <input type="text" id="ville" name="city" class="p-2 w-full border rounded-md" ><br>     
                         <br><label>Situation Actuelle</label>
                         <div class="flex">
                             <select  id="situation" name="situation" onchange="updateCVPreview()" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2">
@@ -270,18 +271,18 @@
             </div>
         </div>
     </div>
-    <script src="./js/main.js"></script>
+    
     <!-- Tailwind CSS -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 <!--jquery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 
 <!-- jsPDF -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
 
 
  <!-- jsPDF -->
@@ -290,18 +291,14 @@
     </script>
     <script src="./js/generate.js"></script>
     <!-- html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-
-
-
-    <script src="./js/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 
     
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
-                    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 
 </body>

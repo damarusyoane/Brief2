@@ -166,8 +166,6 @@ $(document).ready(function() { // Quand le document est pret
                 <input type="date" class="date-fin w-full border p-2 rounded-md">
                 <label for="ville">Ville</label>
                 <input type="text" class="ville w-full border p-2 rounded-md">
-                <label for="entreprise">Entreprise</label>
-                <input type="text" class="entreprise w-full border p-2 rounded-md">
                 <label for="poste">Poste</label>
                 <input type="text" class="poste w-full border p-2 rounded-md">
                 <label for="description">Description</label>
