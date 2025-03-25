@@ -259,10 +259,7 @@ $(document).ready(function() { // Quand le document est pret
             updateCVPreview(); 
         }
 
-    // Generer le PDF
-    $('#generate-pdf').on('click', function() {
-        previewPDF();
-    });
+   
    };
     // Charge les donnees sauvegardees au chargement de la page
 
@@ -291,5 +288,9 @@ function previewPDF() {
         window.open(pdfUrl, '_blank');
     });
  }
+  // Generer le PDF
+  $('#generate-pdf').on('click', function() {
+    previewPDF();
+});
 
 });
