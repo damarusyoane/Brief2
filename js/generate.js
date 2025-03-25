@@ -1,4 +1,3 @@
-const $ = window.jQuery; // Utiliser jQuery depuis la fenêtre globale
 
 $(document).ready(function() { // Quand le document est pret
     // 🎯 Fonction pour gérer les menus déroulants
